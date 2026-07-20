@@ -32,4 +32,33 @@
  */
 export function calculateCoffeePrice(size, type, extras = {}) {
   // Your code here
+  let req_size = ["small", "medium", "large"];
+  let req_type = ["regular", "latte", "cappuccino", "mocha"];
+
+  if (!req_size.includes(size) || !req_type.includes(type)) return -1;
+  let addon = 0.0;
+
+  if (extras) {
+    if (extras.whippedCream) addon += 0.5;
+    if (extras.extraShot) addon += 0.75;
+  }
+
+  switch (type) {
+    case "regular":
+      addon += 0;
+      break;
+    case "latte":
+      addon += 1;
+      break;
+    case "cappuccino":
+      addon += 1.5;
+      break;
+    case "mocha":
+      addon += 2;
+      break;
+  }
+
+  if (size === "small") return Number((addon + 3).toFixed(2));
+  if (size === "medium") return Number((addon + 4).toFixed(2));
+  if (size === "large") return Number((addon + 5).toFixed(2));
 }
